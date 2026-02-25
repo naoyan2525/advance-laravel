@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers;
 
-// Eloquentを使用できるようにAuthorモデルを読み込む
 use App\Models\Author;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+    public function add(){
+        return view('add');
+    }
+
+    public function create(Request $request){
+        $form = $request->all();
+        Author::create($form);
+        return redirect('/');
+    }
+
+
     public function index()
     {
-        $authors = Author::all();
+        $authors = Author::simplePaginate(4);
         return view('index', ['authors' => $authors]);
     }
 }
+
