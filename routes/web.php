@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
-
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\AuthorController;
 Route::get('/session', [SessionController::class, 'getSes']);
 Route::post('/session', [SessionController::class, 'postSes']);
+Route::get('/', [AuthorController::class, 'index']);    
